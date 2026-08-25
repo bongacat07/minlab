@@ -1,5 +1,5 @@
 use crate::packet::checksum::*;
-use crate::packet::ipv4::ipv4::*;
+use crate::packet::ipv4::ipv4_packet::*;
 use std::fmt;
 use std::net::Ipv4Addr;
 #[derive(Debug)]
