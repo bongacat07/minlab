@@ -1,5 +1,5 @@
 [workspace]
 resolver = "3"
 members = [
-    "crates/minc-packet",
+    "crates/minlab-packet",
 ]

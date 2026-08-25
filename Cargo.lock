@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "minlab"
+name = "minlab-packet"
 version = "0.1.0"
