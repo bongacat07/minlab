@@ -114,6 +114,15 @@ impl Ipv4Packet {
         }
     }
 
+    pub fn source(mut self, source: Ipv4Addr) -> Self {
+        self.header.fields.source = source;
+        self
+    }
+    pub fn destination(mut self, destination: Ipv4Addr) -> Self {
+        self.header.fields.destination = destination;
+        self
+    }
+
     pub fn payload(mut self, payload: &[u8]) -> Self {
         self.payload = payload.to_vec();
         let header_len = (self.header.fields.ihl as u16) * 4;

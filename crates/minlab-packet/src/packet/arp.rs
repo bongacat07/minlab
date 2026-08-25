@@ -1,5 +1,3 @@
-use tun_tap::Iface;
-
 const MY_MAC: [u8; 6] = [0x06, 0x09, 0x04, 0x02, 0x00, 0x0a];
 const MY_IP: [u8; 4] = [11, 0, 0, 2];
 pub struct ArpPacket {
@@ -45,22 +43,4 @@ pub fn serialise_arp(x: &ArpPacket) -> Vec<u8> {
     buf.extend_from_slice(&x.target_ip);
 
     buf
-}
-
-pub fn send_arp_reply(iface: &Iface, req: &ArpPacket) {
-    let mut buf = Vec::with_capacity(42);
-
-    buf.extend_from_slice(&req.sender_mac);
-    buf.extend_from_slice(&MY_MAC);
-    buf.extend_from_slice(&0x0806u16.to_be_bytes());
-    buf.extend_from_slice(&req.hardware_type.to_be_bytes());
-    buf.extend_from_slice(&req.protocol_type.to_be_bytes());
-    buf.push(req.hardware_size);
-    buf.push(req.protocol_size);
-    buf.extend_from_slice(&2u16.to_be_bytes());
-    buf.extend_from_slice(&MY_MAC);
-    buf.extend_from_slice(&MY_IP);
-    buf.extend_from_slice(&req.sender_mac);
-    buf.extend_from_slice(&req.sender_ip);
-    let _ = iface.send(&buf);
 }
